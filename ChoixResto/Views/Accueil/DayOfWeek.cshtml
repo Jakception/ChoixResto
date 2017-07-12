@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "DayOfWeek";
+}
+
+<h2>DayOfWeek</h2>
+
+<div>Jour de la semaine</div>
+<br />
+@{ 
+    DayOfWeek jour = Model.Date.DayOfWeek;
+    if(jour == DayOfWeek.Saturday || jour == DayOfWeek.Sunday)
+    {
+        <p>Bon Week-end</p>
+    }
+    else
+    {
+        <p>Bonne semaine</p>
+    }
+}
+

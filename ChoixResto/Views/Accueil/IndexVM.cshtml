@@ -1,0 +1,25 @@
+﻿@model ChoixResto.ViewModels.AccueilViewModel
+
+@{
+    ViewBag.Title = "IndexVM";
+}
+
+<h2>Index avec ViewModel</h2>
+
+<div>
+    Utilisation d'un ViewModel
+</div>
+<ul>
+    <li>@Model.Message</li>
+    <li>@Model.Date.ToString("dd/MM/yyyy")</li>
+    <li>@Model.Resto.Nom</li>
+    <li>@Model.Resto.Telephone</li>
+</ul>
+<br />
+<div>
+    Exemple de formulaire
+</div>
+<input type="text" id="nom" value="@Model.Resto.Nom" />
+<input type="text" id="telephone" value="@Model.Resto.Telephone" />
+<input type="submit" value="Envoyer" />
+

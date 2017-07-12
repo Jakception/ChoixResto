@@ -1,0 +1,24 @@
+﻿@model ChoixResto.ViewModels.AccueilRestoViewModel
+
+@{
+    ViewBag.Title = "IndexRestoVM";
+}
+
+<h2>Liste des restaurants</h2>
+<br />
+<table>
+    <tr>
+        <th>Nom</th>
+        <th>Téléphone</th>
+    </tr>
+    @{ 
+        foreach (var resto in Model.ListeDesRestos)
+        {
+            <tr>
+                <td>@resto.Nom</td>
+                <td>@resto.Telephone</td>
+            </tr>
+        }
+    }
+</table>
+
