@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Formulaire";
+}
+
+<h2>Formulaire</h2>
+<br />
+<div>Exemple</div>
+<div>Je suis la vue index</div>
+@{Html.BeginForm("Index", "Home");}
+    @Html.Label("estMajeur", "Cochez la case si vous êtes <strong>majeur</strong>")
+    @Html.CheckBox("estMajeur", true)
+    <input type="submit" value="Envoyer" />
+@{Html.EndForm();}
+<!-- 
+    <form action="/Home" method="post">
+        <label for="estMajeur">Cochez la case si vous êtes <strong>majeur</strong></label>
+        <input checked="checked" id="estMajeur" name="estMajeur" type="checkbox" value="true" /><input name="estMajeur" type="hidden" value="false" />
+        <input type="submit" value="Envoyer" />
+    </form>
+-->
+<br />
+<div>
+    Surcharge pour méthode get
+</div>
+@{Html.BeginForm("Index2", "Home", FormMethod.Get);}
+@{Html.EndForm();}
+<!-- <form action="/Home" method="get"> -->
+<br />
+<div>
+    Avec le using
+</div>
+<div>Je suis la vue index</div>
+@using (Html.BeginForm("Index", "Home"))
+{
+    @Html.Label("estMajeur", "Cochez la case si vous êtes <strong>majeur</strong>")
+    @Html.CheckBox("estMajeur", true)
+    <input type="submit" value="Envoyer" />
+}
+<br />
+<div>
+    Cas avec surcharge
+</div>
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { target = "_blank" }))
+{
+    //...
+}
+<!-- <form action="/Home" method="post" target="_blank"> -->
+

@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "SelectList";
+}
+
+<h2>SelectList</h2>
+@Html.DropDownList("RestoChoisi", (SelectList)ViewBag.ListeDesRestos)
+<!--
+    <select id="RestoChoisi" name="RestoChoisi">
+        <option value="1">Resto pinambour</option>
+        <option value="2">Resto tologie</option>
+        <option value="5">Resto ride</option>
+        <option value="9">Resto toro</option>
+    </select>
+-->
+<!-- Si sélection
+    <select id="RestoChoisi" name="RestoChoisi">
+        <option value="1">Resto pinambour</option>
+        <option value="2">Resto tologie</option>
+        <option selected="selected" value="5">Resto ride</option>
+        <option value="9">Resto toro</option>
+    </select>
+-->
+

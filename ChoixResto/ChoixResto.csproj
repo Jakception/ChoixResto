@@ -174,6 +174,8 @@
     <Content Include="Views\Accueil\IndexVM.cshtml" />
     <Content Include="Views\Accueil\DayOfWeek.cshtml" />
     <Content Include="Views\Accueil\IndexRestoVM.cshtml" />
+    <Content Include="Views\Accueil\SelectList.cshtml" />
+    <Content Include="Views\Accueil\Formulaire.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
