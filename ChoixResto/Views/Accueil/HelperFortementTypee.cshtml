@@ -1,0 +1,35 @@
+﻿@model ChoixResto.Models.Resto
+@{
+    ViewBag.Title = "HelperFortementTypee";
+}
+
+<h2>HelperFortementTypee</h2>
+
+@Html.TextBox("nom", Model.Nom)
+
+@Html.TextBoxFor(model => model.Nom)
+
+<!-- 
+Ces helpers sont quasiment équivalent, mais le second bénéficie, grâce aux expressions lambda, du support de la complétion automatique ; 
+ceci permet également de simplifier les éventuels refactoring. Plus besoin de vérifier toutes les chaînes de caractères dans les helper si jamais une propriété du modèle change de nom. 
+En général, il y a un helper fortement typé pour chaque helper disponible, ils sont simplement suffixés par For.
+
+Ils ne produisent cependant pas exactement le même code HTML. Voici ce que génère le premier :
+
+    <input id="nom" name="nom" type="text" value="La bonne fourchette" />
+
+Et le second :
+
+    <input data-val="true" data-val-required="Le champ Nom est requis." id="Resto_Nom" name="Resto.Nom" type="text" value="La bonne fourchette" />
+-->
+
+@Html.ActionLink("Modifier le restaurant", "ModifierRestaurant", "Restaurant", new { id = Model<.Id }, null)
+
+<!--
+Notez qu’il est important de passer le dernier paramètre à null (qui correspond en fait aux éventuels attributs HTML à passer, comme le style) afin d’utiliser la bonne surcharge du helper.
+
+Remarque : si vous générez un lien vers une action d’un même contrôleur, il n’est pas obligatoire de le préciser dans le helper, ceci est automatique. Nous pourrons remplacer par exemple :
+@Html.ActionLink("Modifier le restaurant", "ModifierRestaurant", "Restaurant")  
+Par :
+@Html.ActionLink("Modifier le restaurant", "ModifierRestaurant") 
+-->

@@ -101,5 +101,33 @@ namespace ChoixResto.Controllers
             
             return View();
         }
+        public ActionResult HelperFortementTypee()
+        {
+
+            return View();
+        }
+
+        // Appelable que depuis une vue mère
+        [ChildActionOnly]
+        public ActionResult AfficheListeRestaurant()
+        {
+            List<Models.Resto> listeDesRestos = new List<Resto>
+            {
+                new Resto { Id = 1, Nom = "Resto pinambour", Telephone = "1234" },
+                new Resto { Id = 2, Nom = "Resto tologie", Telephone = "1234" },
+                new Resto { Id = 5, Nom = "Resto ride", Telephone = "5678" },
+                new Resto { Id = 9, Nom = "Resto toro", Telephone = "555" },
+            };
+            return PartialView(listeDesRestos);
+        }
+
+        public ActionResult AfficheHTML()
+        {
+            AccueilViewModel vm = new AccueilViewModel
+            {
+                Message = "Bonjour depuis le <span style=\"color:red\">contrôleur</span>"
+            };
+            return View(vm);
+        }
     }
 }

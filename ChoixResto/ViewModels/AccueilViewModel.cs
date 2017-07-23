@@ -10,5 +10,6 @@ namespace ChoixResto.ViewModels
         public string Message { get; set; }
         public DateTime Date { get; set; }
         public Models.Resto Resto { get; set; }
+        public string Login { get; set; }
     }
 }

@@ -54,4 +54,14 @@
     <input checked="checked" id="estMajeur" name="estMajeur" type="checkbox" value="true" /><input name="estMajeur" type="hidden" value="false" />
     <input type="submit" value="Envoyer" />
 -->
+<br />
+<div>Vue partiel avec passage de paramètre</div>
+@Html.Partial("Connexion", Model)
+<!--
+Sans passage de paramètre
+    Html.Partial("Connexion")
+Si pas dans le même dossier, en règle général mettre les vue partiel dans le dosser shared
+    Html.Partial("../Accueil/Connexion")
+    Html.Partial("~/Views/Accueil/Connexion.cshtml")
+-->
 
