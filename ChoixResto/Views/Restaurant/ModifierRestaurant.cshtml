@@ -1,0 +1,25 @@
+﻿@model ChoixResto.Models.Resto
+
+@{
+    ViewBag.Title = "ModifierRestaurant";
+}
+
+<h2>ModifierRestaurant</h2>
+
+@using (Html.BeginForm()) // => <form action="/Restaurant/ModifierRestaurant/1" method="post">
+{
+    <fieldset>
+        <legend>Modifier un restaurant</legend>
+
+        <div>
+            @Html.LabelFor(model => model.Nom)
+            @Html.TextBoxFor(model => model.Nom)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Telephone)
+            @Html.TextBoxFor(model => model.Telephone)
+        </div>
+        <br />
+        <input type="submit" value="Modifier" />
+    </fieldset>
+}

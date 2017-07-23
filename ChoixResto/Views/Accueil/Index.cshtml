@@ -6,47 +6,4 @@
 
 <h2>Index</h2>
 
-<div>
-    Je suis la vue index
-</div>
-<br />
-<div>
-    Avec ViewData
-</div>
-<ul>
-    <li>@ViewData["message"]</li>
-    <li>@(((DateTime)ViewData["date"]).ToString("dd/MM/yyyy"))</li>
-    <li>@(((ChoixResto.Models.Resto)ViewData["resto"]).Nom)</li>
-    <li>@(((ChoixResto.Models.Resto)ViewData["resto"]).Telephone)</li>
-</ul>
-<div>
-    Ou
-</div>
-<ul>
-    <li>@ViewData["message"]</li>
-    <li>@(((DateTime)ViewData["date"]).ToString("dd/MM/yyyy"))</li>
-    @{ 
-        ChoixResto.Models.Resto resto = (ChoixResto.Models.Resto)ViewData["resto"];
-    }
-    <li>@resto.Nom</li>
-    <li>@resto.Telephone</li>
-</ul>
-<br />
-<div>
-    Avec ViewBag
-</div>
-<ul>
-    <li>@ViewBag.message</li>
-    <li>@ViewBag.date.ToString("dd/MM/yyyy")</li>
-    <li>@ViewBag.resto.Nom</li>
-    <li>@ViewBag.resto.Telephone</li>
-</ul>
-<br />
-<div>En passant directement un objet à la vue</div>
-<ul>
-    <li>@Model.Nom</li>
-    <li>@Model.Telephone</li>
-</ul>
-<br />
-<div>Une vue partielle</div>
-@Html.Action("AfficheListeRestaurant")
+Bienvenu sur l'application ChoixResto !

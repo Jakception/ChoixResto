@@ -14,6 +14,11 @@ namespace ChoixResto.Controllers
         // GET: Accueil
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult IndexExemple()
+        {
             // Afficher une vue :
             //
             // return View();

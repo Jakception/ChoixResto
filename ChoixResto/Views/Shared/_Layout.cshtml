@@ -22,8 +22,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">View test <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accueil<span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Exemple", "IndexExemple", "Accueil")</li>
                             <li>@Html.ActionLink("Afficher index VM", "IndexVm", "Accueil")</li>
                             <li>@Html.ActionLink("Afficher DayOfWeek", "DayOfWeek", "Accueil")</li>
                             <li>@Html.ActionLink("Liste des restaurants", "IndexRestoVM", "Accueil")</li>
@@ -31,6 +32,12 @@
                             <li>@Html.ActionLink("Formulaire", "Formulaire", "Accueil")</li>
                             <li>@Html.ActionLink("Helper Fortement Typée", "HelperFortementTypee", "Accueil")</li>
                             <li>@Html.ActionLink("Afficher du HTML", "AfficheHTML", "Accueil")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Restaurant<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Liste des restaurants", "Index", "Restaurant")</li>
                         </ul>
                     </li>
                 </ul>
