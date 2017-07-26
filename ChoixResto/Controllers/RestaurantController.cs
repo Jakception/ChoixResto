@@ -119,6 +119,20 @@ namespace ChoixResto.Controllers
         [HttpPost]
         public ActionResult ModifierRestaurant(Resto resto)
         {
+            // Vérification par rapport au résultat
+            //
+            //if (string.IsNullOrWhiteSpace(resto.Nom))
+            //{
+            //    ViewBag.MessageErreur = "Le nom du restaurant doit être rempli";
+            //    return View(resto);
+            //}
+
+            // On regarde la propriété IsVAlid de l'objet ModelState qui contient l'état du modlèle et la validation des données associée.
+            if (!ModelState.IsValid)
+            {
+                //ViewBag.MessageErreur = ModelState["Nom"].Errors[0].ErrorMessage;
+                return View(resto);
+            }
             using (IDal dal = new Dal())
             {
                 dal.ModifierRestaurant(resto.Id, resto.Nom, resto.Telephone);
