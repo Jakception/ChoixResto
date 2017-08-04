@@ -128,14 +128,36 @@ namespace ChoixResto.Controllers
             //}
 
             // On regarde la propriété IsVAlid de l'objet ModelState qui contient l'état du modlèle et la validation des données associée.
-            if (!ModelState.IsValid)
-            {
-                //ViewBag.MessageErreur = ModelState["Nom"].Errors[0].ErrorMessage;
-                return View(resto);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    //ViewBag.MessageErreur = ModelState["Nom"].Errors[0].ErrorMessage;
+            //    return View(resto);
+            //}
             using (IDal dal = new Dal())
             {
                 dal.ModifierRestaurant(resto.Id, resto.Nom, resto.Telephone);
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult CreerRestaurant()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreerRestaurant(Resto resto)
+        {
+            using (IDal dal = new Dal())
+            {
+                if (dal.RestaurantExiste(resto.Nom))
+                {
+                    ModelState.AddModelError("Nom", "Ce nom de restaurant existe déjà");
+                    return View(resto);
+                }
+                if (!ModelState.IsValid)
+                    return View(resto);
+                dal.CreerRestaurant(resto.Nom, resto.Telephone);
                 return RedirectToAction("Index");
             }
         }

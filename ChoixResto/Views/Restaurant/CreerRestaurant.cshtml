@@ -1,0 +1,43 @@
+﻿@model ChoixResto.Models.Resto
+
+@{
+    ViewBag.Title = "CreerRestaurant";
+}
+
+<h2>Créer un restaurant</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Ajouter un restaurant</legend>
+
+        <div>
+            @Html.LabelFor(model => model.Nom)
+            @Html.TextBoxFor(model => model.Nom)
+            @Html.ValidationMessageFor(model => model.Nom)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Telephone)
+            <!-- Validation avec la classe AumoinsUnDesDeuxAttribute -->
+            @Html.TextBoxFor(model => model.Telephone)
+            @Html.ValidationMessageFor(model => model.Telephone)
+
+            <!-- Avec le javascript pour validation côté client (Validate et js) -->
+            <!--Html.TextBoxFor(model => model.Telephone, new { data_val_verifcontact = "Vous devez saisir au moins un moyen de contacter le restaurant",
+                                                            data_val_verifcontact_parametre1 = "Telephone", data_val_verifcontact_parametre2 = "Email" })-->
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Email)
+            <!-- Validation avec la classe AumoinsUnDesDeuxAttribute -->
+            @Html.TextBoxFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+
+            <!-- Avec le javascript pour validation côté client (Validate et js) -->
+            <!--Html.TextBoxFor(model => model.Email, new { data_val = "true", data_val_verifcontact = "Vous devez saisir au moins un moyen de contacter le restaurant",
+                                                                            data_val_verifcontact_parametre1 = "Telephone", data_val_verifcontact_parametre2 = "Email" })-->
+        </div>
+        <br />
+        <input type="submit" value="Ajouter" />
+    </fieldset>
+}
+

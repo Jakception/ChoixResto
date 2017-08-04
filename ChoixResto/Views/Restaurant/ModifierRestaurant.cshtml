@@ -20,6 +20,12 @@
         <div>
             @Html.LabelFor(model => model.Telephone)
             @Html.TextBoxFor(model => model.Telephone)
+            @Html.ValidationMessageFor(model => model.Telephone)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Email)
+            @Html.TextBoxFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
         </div>
         <br />
         <input type="submit" value="Modifier" />

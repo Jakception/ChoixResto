@@ -10,6 +10,20 @@
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.validate-vsdoc.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript">
+    jQuery.validator.addMethod("verifcontact",
+    function (value, element, params) {
+        var tel = $("#" + params.parametre1).val();
+        var email = $("#" + params.parametre2).val();
+        return tel != '' || email != '';
+    });
+
+    jQuery.validator.unobtrusive.adapters.add
+        ("verifcontact", ["parametre1", "parametre2"], function (options) {
+            options.rules["verifcontact"] = options.params;
+            options.messages["verifcontact"] = options.message;
+        });
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -41,6 +55,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Restaurant<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Liste des restaurants", "Index", "Restaurant")</li>
+                            <li>@Html.ActionLink("Créer un restaurant", "CreerRestaurant", "Restaurant")</li>
                         </ul>
                     </li>
                 </ul>

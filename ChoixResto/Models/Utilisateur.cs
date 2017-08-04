@@ -13,5 +13,7 @@ namespace ChoixResto.Models
         public string Prenom { get; set; }
         [Required]
         public string MotDePasse { get; set; }
+        [Range(18, 120)]
+        public int Age { get; set; }
     }
 }
