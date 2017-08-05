@@ -134,5 +134,12 @@ namespace ChoixResto.Controllers
             };
             return View(vm);
         }
+
+        //public ActionResult AfficheDate(string id)
+        //{
+        //    ViewBag.Message = "Bonjour " + id + " !";
+        //    ViewData["Date"] = new DateTime(2012, 4, 28);
+        //    return View("Index");
+        //}
     }
 }
