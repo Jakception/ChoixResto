@@ -10,10 +10,12 @@ namespace ChoixResto.Models
     {
         public int Id { get; set; }
         [Required]
+        [Display(Name = "Prénom")]
         public string Prenom { get; set; }
         [Required]
+        [Display(Name = "Mot de passe")]
         public string MotDePasse { get; set; }
-        [Range(18, 120)]
+        // [Range(18, 120)]
         public int Age { get; set; }
     }
 }

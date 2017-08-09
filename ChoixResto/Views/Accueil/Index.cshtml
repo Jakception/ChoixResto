@@ -7,3 +7,19 @@
 <h2>Index</h2>
 
 Bienvenu sur l'application ChoixResto !
+
+<br />
+
+<div>
+    <p>Prêts à choisir un restaurant ?</p>
+    @using (Html.BeginForm())
+    {
+        <!--input type="submit" value="Créer un sondage" />-->
+        <button type="submit" class="btn btn-primary">Créer un sondage</button>
+    }
+    <br />
+    <ul>
+        <li>@Html.ActionLink("Liste des restaurants", "Index", "Restaurant")</li>
+        <li>@Html.ActionLink("Créer un restaurant", "CreerRestaurant", "Restaurant")</li>
+    </ul>
+</div>

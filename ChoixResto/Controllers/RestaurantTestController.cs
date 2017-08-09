@@ -8,7 +8,7 @@ using ChoixResto.Models;
 
 namespace ChoixResto.Controllers
 {
-    public class RestaurantController2 : Controller
+    public class RestaurantTestController : Controller
     {
         // GET: Restaurant
         public ActionResult Index()
