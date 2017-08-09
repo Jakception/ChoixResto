@@ -1,0 +1,23 @@
+﻿@model ChoixResto.Models.Utilisateur
+
+@{
+    ViewBag.Title = "Créer un compte";
+}
+
+<h2>Créer un compte</h2>
+
+<p>Créer un compte : </p>
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(m => m.Prenom)
+        @Html.TextBoxFor(m => m.Prenom)
+        @Html.ValidationMessageFor(m => m.Prenom)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.MotDePasse)
+        @Html.PasswordFor(m => m.MotDePasse)
+        @Html.ValidationMessageFor(m => m.MotDePasse)
+    </div>
+    <button type="submit" class="btn btn-primary">Créer</button>
+}

@@ -40,7 +40,8 @@ namespace ChoixResto.Controllers
         {
             if (!ModelState.IsValid)
                 return View(viewModel);
-            Utilisateur utilisateur = dal.ObtenirUtilisateur(Request.Browser.Browser);
+            // Utilisateur utilisateur = dal.ObtenirUtilisateur(Request.Browser.Browser);
+            Utilisateur utilisateur = dal.ObtenirUtilisateur(HttpContext.User.Identity.Name);
             if (utilisateur == null)
                 return new HttpUnauthorizedResult();
             foreach (RestaurantCheckBoxViewModel restaurantCheckBoxViewModel in viewModel.ListeDesResto.Where(r => r.EstSelectionne))
@@ -52,7 +53,8 @@ namespace ChoixResto.Controllers
 
         public ActionResult AfficheResultat(int id)
         {
-            if (!dal.ADejaVote(id, Request.Browser.Browser))
+            // if (!dal.ADejaVote(id, Request.Browser.Browser))
+            if (!dal.ADejaVote(id, HttpContext.User.Identity.Name))
             {
                 return RedirectToAction("Index", new { id = id });
             }
