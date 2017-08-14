@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using System.Web.Mvc;
 using ChoixResto.Controllers;
+using ChoixResto.Models;
+using System.Collections.Generic;
 
 namespace ChoixResto.Tests
 {

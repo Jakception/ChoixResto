@@ -1,0 +1,19 @@
+﻿@model List<ChoixResto.Models.Resultats>
+
+<table>
+    <tr>
+        <th>Nom</th>
+        <th>Téléphone</th>
+        <th>Nombre de votes</th>
+    </tr>
+    @foreach (var resto in Model)
+    {
+        <tr>
+            <td>@resto.Nom</td>
+            <td>@resto.Telephone</td>
+            <td>@resto.NombreDeVotes</td>
+        </tr>
+    }
+</table>
+
+<p>Vue partielle : @DateTime.Now.ToLongTimeString()</p>

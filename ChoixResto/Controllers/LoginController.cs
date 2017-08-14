@@ -73,5 +73,11 @@ namespace ChoixResto.Controllers
             FormsAuthentication.SignOut();
             return Redirect("/");
         }
+
+        // HttpContext.User.Identity
+        // ***** pour savoir si l’utilisateur est authentifié *****
+        // HttpContext.User.Identity.IsAuthenticated
+        // *****  pour connaitre l’identifiant de l’utilisateur connecté *****
+        // HttpContext.User.Identity.Name
     }
 }

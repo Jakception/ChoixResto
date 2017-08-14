@@ -27,6 +27,8 @@ namespace ChoixResto.Controllers
             return View(listeDesRestaurants);
         }
 
+        // Limite l'accès au seul compte administrateur
+        // [Authorize(Roles="Administrateur")]
         public ActionResult CreerRestaurant()
         {
             return View();

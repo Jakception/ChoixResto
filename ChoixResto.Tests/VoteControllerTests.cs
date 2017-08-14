@@ -15,7 +15,7 @@ namespace ChoixResto.Tests
     {
         private IDal dal;
         private int idSondage;
-        private VoteController controleur;
+        private VoteTestController controleur;
 
         [TestInitialize]
         public void Init()
@@ -24,11 +24,26 @@ namespace ChoixResto.Tests
             idSondage = dal.CreerUnSondage();
 
             Mock<ControllerContext> controllerContext = new Mock<ControllerContext>();
-            controllerContext.Setup(p => p.HttpContext.Request.Browser.Browser).Returns("1");
+            controllerContext.Setup(p => p.HttpContext.User.Identity.Name).Returns("1");
 
-            controleur = new VoteController(dal);
+            controleur = new VoteTestController(dal);
             controleur.ControllerContext = controllerContext.Object;
         }
+
+        // TP
+        //
+        //[TestInitialize]
+        //public void Init()
+        //{
+        //    dal = new DalEnDur();
+        //    idSondage = dal.CreerUnSondage();
+
+        //    Mock<ControllerContext> controllerContext = new Mock<ControllerContext>();
+        //    controllerContext.Setup(p => p.HttpContext.Request.Browser.Browser).Returns("1");
+
+        //    controleur = new VoteController(dal);
+        //    controleur.ControllerContext = controllerContext.Object;
+        //}
 
         [TestMethod]
         public void Index_AvecSondageNormalMaisSansUtilisateur_RenvoiLeBonViewModelEtAfficheLaVue()
@@ -117,17 +132,17 @@ namespace ChoixResto.Tests
             mock.Setup(m => m.ObtenirUtilisateur("1")).Returns(new Utilisateur { Id = 1, Prenom = "Nico" });
 
             Mock<ControllerContext> controllerContext = new Mock<ControllerContext>();
-            controllerContext.Setup(p => p.HttpContext.Request.Browser.Browser).Returns("1");
-            controleur = new VoteController(mock.Object);
+            controllerContext.Setup(p => p.HttpContext.User.Identity.Name).Returns("1");
+            controleur = new VoteTestController(mock.Object);
             controleur.ControllerContext = controllerContext.Object;
 
             RestaurantVoteViewModel viewModel = new RestaurantVoteViewModel
             {
                 ListeDesResto = new List<RestaurantCheckBoxViewModel>
-                {
-                    new RestaurantCheckBoxViewModel { EstSelectionne = true, Id = 2, NomEtTelephone = "Resto pinière (0102030405)"},
-                    new RestaurantCheckBoxViewModel { EstSelectionne = false, Id = 3, NomEtTelephone = "Resto toro (0102030405)"},
-                }
+            {
+                new RestaurantCheckBoxViewModel { EstSelectionne = true, Id = 2, NomEtTelephone = "Resto pinière (0102030405)"},
+                new RestaurantCheckBoxViewModel { EstSelectionne = false, Id = 3, NomEtTelephone = "Resto toro (0102030405)"},
+            }
             };
             controleur.ValideLeModele(viewModel);
 
@@ -137,6 +152,36 @@ namespace ChoixResto.Tests
             Assert.AreEqual("AfficheResultat", resultat.RouteValues["action"]);
             Assert.AreEqual(idSondage, resultat.RouteValues["id"]);
         }
+
+        // TP
+        //
+        //[TestMethod]
+        //public void IndexPost_AvecViewModelValideEtUtilisateur_AppelleBienAjoutVoteEtRenvoiBonneAction()
+        //{
+        //    Mock<IDal> mock = new Mock<IDal>();
+        //    mock.Setup(m => m.ObtenirUtilisateur("1")).Returns(new Utilisateur { Id = 1, Prenom = "Nico" });
+
+        //    Mock<ControllerContext> controllerContext = new Mock<ControllerContext>();
+        //    controllerContext.Setup(p => p.HttpContext.Request.Browser.Browser).Returns("1");
+        //    controleur = new VoteController(mock.Object);
+        //    controleur.ControllerContext = controllerContext.Object;
+
+        //    RestaurantVoteViewModel viewModel = new RestaurantVoteViewModel
+        //    {
+        //        ListeDesResto = new List<RestaurantCheckBoxViewModel>
+        //        {
+        //            new RestaurantCheckBoxViewModel { EstSelectionne = true, Id = 2, NomEtTelephone = "Resto pinière (0102030405)"},
+        //            new RestaurantCheckBoxViewModel { EstSelectionne = false, Id = 3, NomEtTelephone = "Resto toro (0102030405)"},
+        //        }
+        //    };
+        //    controleur.ValideLeModele(viewModel);
+
+        //    RedirectToRouteResult resultat = (RedirectToRouteResult)controleur.Index(viewModel, idSondage);
+
+        //    mock.Verify(m => m.AjouterVote(idSondage, 2, 1));
+        //    Assert.AreEqual("AfficheResultat", resultat.RouteValues["action"]);
+        //    Assert.AreEqual(idSondage, resultat.RouteValues["id"]);
+        //}
 
         [TestMethod]
         public void AfficheResultat_SansAvoirVote_RenvoiVersIndex()

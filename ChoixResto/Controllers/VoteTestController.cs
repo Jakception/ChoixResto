@@ -1,22 +1,25 @@
-﻿using ChoixResto.Models;
-using ChoixResto.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using ChoixResto.Models;
+using ChoixResto.ViewModels;
+
 namespace ChoixResto.Controllers
 {
-    public class VoteController : Controller
+    // Sécurise un contrôleur
+    [Authorize]
+    public class VoteTestController : Controller
     {
         private IDal dal;
 
-        public VoteController() : this(new Dal())
+        public VoteTestController() : this(new Dal())
         {
         }
 
-        public VoteController(IDal dalIoc)
+        public VoteTestController(IDal dalIoc)
         {
             dal = dalIoc;
         }
@@ -56,18 +59,13 @@ namespace ChoixResto.Controllers
 
         public ActionResult AfficheResultat(int id)
         {
+            // if (!dal.ADejaVote(id, Request.Browser.Browser))
             if (!dal.ADejaVote(id, HttpContext.User.Identity.Name))
             {
                 return RedirectToAction("Index", new { id = id });
             }
-            ViewBag.Id = id;
-            return View();
-        }
-
-        public ActionResult AfficheTableau(int id)
-        {
             List<Resultats> resultats = dal.ObtenirLesResultats(id);
-            return PartialView(resultats.OrderByDescending(r => r.NombreDeVotes).ToList());
+            return View(resultats.OrderByDescending(r => r.NombreDeVotes).ToList());
         }
     }
 }
