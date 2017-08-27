@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace ChoixResto.Controllers
@@ -68,6 +69,18 @@ namespace ChoixResto.Controllers
         {
             List<Resultats> resultats = dal.ObtenirLesResultats(id);
             return PartialView(resultats.OrderByDescending(r => r.NombreDeVotes).ToList());
+        }
+
+        public ActionResult AfficheGraphique(int id)
+        {
+            List<Resultats> resultats = dal.ObtenirLesResultats(id);
+
+            Chart graphique = new Chart(width: 600, height: 400)
+            .AddTitle("Résultats")
+            .AddSeries(
+            xValue: resultats.Select(resto => resto.Nom).ToArray(),
+            yValues: resultats.Select(resto => resto.NombreDeVotes.ToString()).ToArray());
+            return File(graphique.GetBytes("png"), "image/png");
         }
     }
 }

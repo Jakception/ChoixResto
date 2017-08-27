@@ -192,14 +192,43 @@ namespace ChoixResto.Tests
             Assert.AreEqual(idSondage, resultat.RouteValues["id"]);
         }
 
+        // Si AJAX dans l'affichage des résultats à commenter
+        //
+        //[TestMethod]
+        //public void AfficheResultat_AvecVote_RenvoiLesResultats()
+        //{
+        //    dal.AjouterUtilisateur("Nico", "1234");
+        //    dal.AjouterUtilisateur("Jérémie", "1234");
+        //    dal.AjouterVote(idSondage, 1, 1);
+
+        //    ViewResult view = (ViewResult)controleur.AfficheResultat(idSondage);
+
+        //    List<Resultats> model = (List<Resultats>)view.Model;
+        //    Assert.AreEqual(1, model.Count);
+        //    Assert.AreEqual("Resto pinambour", model[0].Nom);
+        //    Assert.AreEqual(1, model[0].NombreDeVotes);
+        //    Assert.AreEqual("0102030405", model[0].Telephone);
+        //}
+
         [TestMethod]
-        public void AfficheResultat_AvecVote_RenvoiLesResultats()
+        public void AfficheResultat_AvecVote_RenvoieLaVueParDefaut()
         {
             dal.AjouterUtilisateur("Nico", "1234");
             dal.AjouterUtilisateur("Jérémie", "1234");
             dal.AjouterVote(idSondage, 1, 1);
 
             ViewResult view = (ViewResult)controleur.AfficheResultat(idSondage);
+            Assert.AreEqual(string.Empty, view.ViewName);
+        }
+
+        [TestMethod]
+        public void AfficheTableau_RenvoieLeViewModel()
+        {
+            dal.AjouterUtilisateur("Nico", "1234");
+            dal.AjouterUtilisateur("Jérémie", "1234");
+            dal.AjouterVote(idSondage, 1, 1);
+
+            PartialViewResult view = (PartialViewResult)controleur.AfficheTableau(idSondage);
 
             List<Resultats> model = (List<Resultats>)view.Model;
             Assert.AreEqual(1, model.Count);

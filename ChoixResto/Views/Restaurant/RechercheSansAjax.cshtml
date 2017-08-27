@@ -1,0 +1,37 @@
+﻿@model ChoixResto.ViewModels.RechercheViewModel
+@{
+    ViewBag.Title = "Chercher un restaurant v1";
+}
+
+<br />
+
+@using (Html.BeginForm("RechercheSansAjax", "Restaurant", FormMethod.Get))
+{
+    @Html.TextBoxFor(m => m.Recherche);
+    <input type="submit" value="Rechercher" />
+
+    <br />
+    <br />
+
+    <p>Résultats de la recherche</p>
+    if (Model.ListeDesRestos.Count == 0)
+    {
+        <p>Pas de résultat</p>
+    }
+    else
+    {
+        <table>
+            <tr>
+                <th>Nom</th>
+                <th>Téléphone</th>
+            </tr>
+            @foreach (var resto in Model.ListeDesRestos)
+            {
+                <tr>
+                    <td>@resto.Nom</td>
+                    <td>@resto.Telephone</td>
+                </tr>
+            }
+        </table>
+    }
+}

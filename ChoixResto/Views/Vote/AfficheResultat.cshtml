@@ -4,6 +4,32 @@
     ViewBag.Title = "AfficheResultat";
 }
 
+<!-- Gestion des erreurs -->
+<script type="text/javascript">
+    function ErreurAfficheTableau() {
+        $("#tableauResultat").html("Une erreur s'est produite lors de la mise à jour, veuillez réessayer ...");
+    }
+</script>
+
+<!-- Ajout d'un timer -->
+<script type="text/javascript">
+    var timer;
+    function ChargeVuePartielle() {
+        $.ajax({
+            url: '@Url.Action("AfficheTableau", new {id = ViewBag.Id  })',
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+                $('#tableauResultat').html(result);
+            }
+        });
+    }
+
+    $(function () {
+        timer = window.setInterval("ChargeVuePartielle()", 10000);
+    });
+</script>
+
 <h2>Affichage du resultat</h2>
 <br />
 <p>Résultats du sondage :</p>
@@ -12,11 +38,19 @@
         Html.RenderAction("AfficheTableau", new { id = ViewBag.Id });
     }
 </div>
+
+<br />
+
+<img src="@Url.Action("AfficheGraphique", new { id = ViewBag.Id })" />
+
+<br />
+
 @Ajax.ActionLink("Actualiser le résultat", "AfficheTableau", new { id = ViewBag.Id }, new AjaxOptions
 {
     InsertionMode = InsertionMode.Replace,
     UpdateTargetId = "tableauResultat",
-    HttpMethod = "GET"
+    HttpMethod = "GET",
+    OnFailure = "ErreurAfficheTableau"
 })
 <p>Vue normale : @DateTime.Now.ToLongTimeString()</p>
 

@@ -127,6 +127,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\ajax-loader.gif" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -170,6 +171,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AccueilRestoViewModel.cs" />
     <Compile Include="ViewModels\AccueilViewModel.cs" />
+    <Compile Include="ViewModels\RechercheViewModel.cs" />
     <Compile Include="ViewModels\RestaurantCheckBoxViewModel.cs" />
     <Compile Include="ViewModels\RestaurantVoteViewModel.cs" />
     <Compile Include="ViewModels\UtilisateurViewModel.cs" />
@@ -210,6 +212,9 @@
     <Content Include="Views\VoteTest\Index.cshtml" />
     <Content Include="Views\VoteTest\AfficheResultat.cshtml" />
     <Content Include="Views\Vote\AfficheTableau.cshtml" />
+    <Content Include="Views\Restaurant\Recherche.cshtml" />
+    <Content Include="Views\Restaurant\RechercheSansAjax.cshtml" />
+    <Content Include="Views\Restaurant\ResultatsRecherche.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,49 @@
+﻿@model ChoixResto.ViewModels.RechercheViewModel
+@{
+    ViewBag.Title = "Chercher un restaurant";
+}
+
+<!--
+using (Html.BeginForm("Recherche", "Restaurant", FormMethod.Get))
+{
+    Html.TextBoxFor(m => m.Recherche);
+    <input type="submit" value="Rechercher" />
+    <p>Vue principale : DateTime.Now.ToLongTimeString()</p>
+
+    <div id="resultats">
+        {Html.RenderAction("ResultatsRecherche", new { rechercheViewModel = Model });
+        }
+    </div>
+}
+-->
+
+<script type="text/javascript">
+    function ErreurRecherche() {
+        $("#resultats").html("Une erreur s'est produite lors de la recherche, veuillez réessayer ...");
+    }
+</script>
+
+<br />
+
+@using (Ajax.BeginForm("ResultatsRecherche", new AjaxOptions
+{
+    HttpMethod = "GET",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "resultats",
+    OnFailure = "ErreurRecherche",
+    LoadingElementId = "chargement"
+}))
+{
+    @Html.TextBoxFor(m => m.Recherche);
+    <img id="chargement" src="~/Content/Images/ajax-loader.gif" style="display: none" alt="Chargement en cours..." />
+    <input type="submit" value="Rechercher" />
+
+    <br />
+
+    <p>Vue principale : @DateTime.Now.ToLongTimeString()</p>
+
+    <div id="resultats">
+        @{Html.RenderAction("ResultatsRecherche", new { rechercheViewModel = Model });
+        }
+    </div>
+}

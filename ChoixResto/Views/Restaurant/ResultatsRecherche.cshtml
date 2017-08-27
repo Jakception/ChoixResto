@@ -1,0 +1,23 @@
+﻿@model ChoixResto.ViewModels.RechercheViewModel
+<p>Vue partielle : @DateTime.Now.ToLongTimeString()</p>
+<p>Résultats de la recherche</p>
+@if (Model.ListeDesRestos.Count == 0)
+{
+    <p>Pas de résultat</p>
+}
+else
+{
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Téléphone</th>
+        </tr>
+        @foreach (var resto in Model.ListeDesRestos)
+        {
+            <tr>
+                <td>@resto.Nom</td>
+                <td>@resto.Telephone</td>
+            </tr>
+        }
+    </table>
+}

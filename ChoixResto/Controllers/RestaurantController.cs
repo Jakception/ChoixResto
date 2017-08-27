@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 
 using ChoixResto.Models;
+using ChoixResto.ViewModels;
+using System.Threading;
 
 namespace ChoixResto.Controllers
 {
@@ -68,6 +70,42 @@ namespace ChoixResto.Controllers
                 return View(resto);
             dal.ModifierRestaurant(resto.Id, resto.Nom, resto.Telephone);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult RechercheSansAjax(RechercheViewModel rechercheViewModel)
+        {
+            if (!string.IsNullOrWhiteSpace(rechercheViewModel.Recherche))
+                rechercheViewModel.ListeDesRestos = dal.ObtientTousLesRestaurants().Where(r => r.Nom.IndexOf(rechercheViewModel.Recherche, StringComparison.CurrentCultureIgnoreCase) >= 0).ToList();
+            else
+                rechercheViewModel.ListeDesRestos = new List<Resto>();
+            return View(rechercheViewModel);
+        }
+
+        public ActionResult Recherche(RechercheViewModel rechercheViewModel)
+        {
+            return View(rechercheViewModel);
+        }
+
+        //public ActionResult ResultatsRecherche(RechercheViewModel rechercheViewModel)
+        //{
+        //    if (!string.IsNullOrWhiteSpace(rechercheViewModel.Recherche))
+        //        rechercheViewModel.ListeDesRestos = dal.ObtientTousLesRestaurants().Where(r => r.Nom.IndexOf(rechercheViewModel.Recherche, StringComparison.CurrentCultureIgnoreCase) >= 0).ToList();
+
+        //    else
+        //        rechercheViewModel.ListeDesRestos = new List<Resto>();
+        //    return PartialView(rechercheViewModel);
+        //}
+
+        public ActionResult ResultatsRecherche(RechercheViewModel rechercheViewModel)
+        {
+            if (!string.IsNullOrWhiteSpace(rechercheViewModel.Recherche))
+            {
+                rechercheViewModel.ListeDesRestos = dal.ObtientTousLesRestaurants().Where(r => r.Nom.IndexOf(rechercheViewModel.Recherche, StringComparison.CurrentCultureIgnoreCase) >= 0).ToList();
+                Thread.Sleep(1500);
+            }
+            else
+                rechercheViewModel.ListeDesRestos = new List<Resto>();
+            return PartialView(rechercheViewModel);
         }
     }
 }
