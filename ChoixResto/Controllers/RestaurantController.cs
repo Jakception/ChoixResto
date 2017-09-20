@@ -107,5 +107,11 @@ namespace ChoixResto.Controllers
                 rechercheViewModel.ListeDesRestos = new List<Resto>();
             return PartialView(rechercheViewModel);
         }
+
+        public JsonResult VerifNomResto(string Nom)
+        {
+            bool resultat = !dal.RestaurantExiste(Nom);
+            return Json(resultat, JsonRequestBehavior.AllowGet);
+        }
     }
 }

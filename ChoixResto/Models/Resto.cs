@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ChoixResto.Models
 {
@@ -13,6 +14,7 @@ namespace ChoixResto.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Le nom du restaurant doit être saisi")]
         [StringLength(80)]
+        [Remote("VerifNomResto", "Restaurant", ErrorMessage="Ce nom de restaurant existe déjà")]
         public string Nom { get; set; }
         [Display(Name ="Téléphone")]
         [RegularExpression(@"^0[0-9]{9}$", ErrorMessage = "Le numéro de téléphone est incorrect")]

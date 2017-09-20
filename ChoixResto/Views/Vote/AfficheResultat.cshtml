@@ -27,6 +27,7 @@
 
     $(function () {
         timer = window.setInterval("ChargeVuePartielle()", 10000);
+        ChargeVuePartielle();
     });
 </script>
 
@@ -34,9 +35,9 @@
 <br />
 <p>Résultats du sondage :</p>
 <div id="tableauResultat">
-    @{
+    @*@{
         Html.RenderAction("AfficheTableau", new { id = ViewBag.Id });
-    }
+    }*@
 </div>
 
 <br />

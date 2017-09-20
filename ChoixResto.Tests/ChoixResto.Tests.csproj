@@ -77,6 +77,7 @@
     <Compile Include="DalTests.cs" />
     <Compile Include="AccueilControllerTests.cs" />
     <Compile Include="RestaurantControllerTests.cs" />
+    <Compile Include="AjaxFilterAttributeTests.cs" />
     <Compile Include="VoteControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>

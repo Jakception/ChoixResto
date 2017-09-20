@@ -1,4 +1,5 @@
-﻿using ChoixResto.Models;
+﻿using ChoixResto.Filters;
+using ChoixResto.Models;
 using ChoixResto.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -65,6 +66,7 @@ namespace ChoixResto.Controllers
             return View();
         }
 
+        [AjaxFilter]
         public ActionResult AfficheTableau(int id)
         {
             List<Resultats> resultats = dal.ObtenirLesResultats(id);

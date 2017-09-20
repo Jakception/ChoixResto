@@ -9,6 +9,7 @@ using System.Web.Security;
 
 namespace ChoixResto.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         private IDal dal;
